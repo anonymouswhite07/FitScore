@@ -4,6 +4,7 @@ from app.services.embedding import get_embedding, compute_cosine_similarity
 from app.services.matcher import match_skills, match_experience
 from app.services.scorer import predict_score
 from app.services.explain import generate_explanation
+from app.utils.text_cleaning import clean_text
 
 router = APIRouter()
 
@@ -24,6 +25,11 @@ async def analyze_fit(resume: UploadFile = File(...), job_description: str = For
     
     # 1. Parsing
     resume_text, resume_entities = process_resume(pdf_bytes)
+    
+    # Security: Sanitize all inputs
+    job_description = clean_text(job_description)
+    resume_text = clean_text(resume_text)
+    
     jd_entities = process_jd(job_description)
     
     # 2. Embedding
