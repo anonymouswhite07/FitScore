@@ -32,33 +32,41 @@ export default function UploadSection({ onAnalyze, isLoading }) {
             <label className="block text-xs font-black text-primary uppercase tracking-[0.2em] ml-1">
               01. Upload Resume
             </label>
-            <div className="relative group">
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative group"
+            >
               <input
                 type="file"
                 accept=".pdf"
                 onChange={handleFileChange}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               />
-              <div className={`h-56 border border-white/10 rounded-[1.5rem] flex flex-col items-center justify-center transition-all duration-500 bg-white/5 backdrop-blur-md overflow-hidden ${resume ? 'border-accent/40 shadow-accent/10' : 'group-hover:border-primary/40 group-hover:bg-primary/5'}`}>
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className={`h-64 border-2 border-white/5 rounded-[2.5rem] flex flex-col items-center justify-center transition-all duration-700 bg-white/5 backdrop-blur-3xl overflow-hidden ${resume ? 'border-accent/40 shadow-[0_0_40px_rgba(0,242,96,0.1)]' : 'group-hover:border-primary/40 group-hover:bg-primary/5'}`}>
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 {resume ? (
                   <>
-                    <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mb-4 glow-accent">
-                      <FileText className="w-8 h-8 text-accent" />
-                    </div>
-                    <p className="text-accent font-bold text-center px-6 truncate w-full tracking-tight">{resume.name}</p>
+                    <motion.div 
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4 shadow-[0_0_30px_rgba(0,242,96,0.2)]"
+                    >
+                      <FileText className="w-10 h-10 text-accent" />
+                    </motion.div>
+                    <p className="text-accent font-black text-center px-8 truncate w-full tracking-tight text-sm">{resume.name}</p>
                   </>
                 ) : (
                   <>
-                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
-                      <Upload className="w-8 h-8 text-textMuted group-hover:text-primary transition-colors" />
+                    <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-700">
+                      <Upload className="w-10 h-10 text-textMuted group-hover:text-primary transition-colors duration-500" />
                     </div>
-                    <p className="text-textMuted font-medium">Drop PDF file here</p>
-                    <p className="text-xs text-textMuted/50 mt-2 uppercase tracking-widest">Max 5MB</p>
+                    <p className="text-textMuted font-bold tracking-tight">Drop Resume Here</p>
+                    <p className="text-[10px] text-textMuted/40 mt-2 uppercase tracking-[0.3em] font-black">PDF Format • Max 5MB</p>
                   </>
                 )}
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Job Description */}
@@ -66,38 +74,39 @@ export default function UploadSection({ onAnalyze, isLoading }) {
             <label className="block text-xs font-black text-secondary uppercase tracking-[0.2em] ml-1">
               02. Job Description
             </label>
-            <div className="relative">
+            <div className="relative group">
               <textarea
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
-                placeholder="Paste the requirements..."
-                className="w-full h-56 bg-white/5 border border-white/10 rounded-[1.5rem] p-6 text-text placeholder-white/10 focus:outline-none focus:border-secondary/40 focus:ring-4 focus:ring-secondary/5 transition-all resize-none font-medium leading-relaxed"
+                placeholder="Describe the ideal candidate..."
+                className="w-full h-64 bg-white/5 border border-white/5 rounded-[2.5rem] p-8 text-text placeholder-white/10 focus:outline-none focus:border-secondary/40 focus:ring-[12px] focus:ring-secondary/5 transition-all resize-none font-bold leading-relaxed shadow-inner"
                 required
               />
-              <div className="absolute bottom-4 right-4 text-[10px] font-black text-textMuted/30 tracking-widest uppercase">
-                Input Required
+              <div className="absolute bottom-6 right-8 flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></div>
+                <span className="text-[10px] font-black text-textMuted/40 tracking-[0.2em] uppercase">Requirements Engine</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-4">
           <button
             type="submit"
             disabled={!resume || !jobDescription || isLoading}
-            className="group relative px-10 py-5 bg-white text-background rounded-full font-black text-sm tracking-[0.2em] uppercase overflow-hidden disabled:opacity-20 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-primary/20"
+            className="group relative px-12 py-6 bg-white text-background rounded-full font-black text-xs tracking-[0.3em] uppercase overflow-hidden disabled:opacity-20 disabled:cursor-not-allowed transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:shadow-primary/30"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <span className="relative z-10 flex items-center gap-3 group-hover:text-white transition-colors duration-500">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 transition-all duration-700 animate-gradient-x"></div>
+            <span className="relative z-10 flex items-center gap-4 group-hover:text-white transition-colors duration-500">
               {isLoading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  Processing...
+                  Analyzing Vector Space...
                 </>
               ) : (
                 <>
-                  Analyze Fit
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Initiate Fit Analysis
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
                 </>
               )}
             </span>
