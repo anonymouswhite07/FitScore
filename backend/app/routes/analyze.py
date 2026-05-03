@@ -9,10 +9,18 @@ router = APIRouter()
 
 @router.post("/analyze")
 async def analyze_fit(resume: UploadFile = File(...), job_description: str = Form(...)):
+    # Security Check: File type
     if resume.content_type != "application/pdf":
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
         
+    # Security Check: File size (Max 5MB)
+    MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
+    file_size = 0
+    
+    # Efficiently check size
     pdf_bytes = await resume.read()
+    if len(pdf_bytes) > MAX_FILE_SIZE:
+        raise HTTPException(status_code=413, detail="File too large. Maximum allowed size is 5MB.")
     
     # 1. Parsing
     resume_text, resume_entities = process_resume(pdf_bytes)
