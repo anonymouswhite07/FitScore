@@ -3,6 +3,24 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, AlertTriangle, Briefcase, Zap, FileText } from 'lucide-react';
 import SkillGapAnalyzer from './SkillGapAnalyzer';
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
 export default function ResultsDashboard({ result, onReset }) {
   const getScoreColor = (score) => {
     if (score >= 80) return 'text-accent drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]';
@@ -16,12 +34,13 @@ export default function ResultsDashboard({ result, onReset }) {
     return 'border-red-400 shadow-[0_0_30px_rgba(248,113,113,0.2)]';
   return (
     <motion.div 
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
       className="max-w-6xl mx-auto w-full space-y-10"
     >
       {/* Header Card */}
-      <div className="liquid-glass p-12 relative">
+      <motion.div variants={itemVariants} className="liquid-glass p-12 relative">
         <div className="absolute top-0 right-0 p-8">
           <button 
             onClick={onReset}
@@ -111,4 +130,4 @@ export default function ResultsDashboard({ result, onReset }) {
       <SkillGapAnalyzer matched={result.matched_skills} missing={result.missing_skills} />
     </motion.div>
   );
-}
+
