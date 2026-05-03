@@ -31,7 +31,11 @@ export default function SkillGapAnalyzer({ matched, missing }) {
               {skill}
             </span>
           )) : (
-            <p className="text-textMuted text-sm">All required core skills are present!</p>
+            <p className="text-textMuted text-sm">
+              {matched.length > 0 
+                ? "All required core skills are present!" 
+                : "No specific skills detected in Job Description."}
+            </p>
           )}
         </div>
         {missing.length > 0 && (
