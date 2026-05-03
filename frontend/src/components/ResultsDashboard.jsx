@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, AlertTriangle, Briefcase, Zap, FileText } from 'lucide-react';
+import { CheckCircle2, AlertTriangle, Briefcase, Zap, FileText, RotateCcw, TrendingUp } from 'lucide-react';
 import SkillGapAnalyzer from './SkillGapAnalyzer';
 
 const containerVariants = {
@@ -32,6 +32,8 @@ export default function ResultsDashboard({ result, onReset }) {
     if (score >= 80) return 'border-accent shadow-[0_0_30px_rgba(16,185,129,0.2)]';
     if (score >= 60) return 'border-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.2)]';
     return 'border-red-400 shadow-[0_0_30px_rgba(248,113,113,0.2)]';
+  };
+
   return (
     <motion.div 
       variants={containerVariants}
@@ -125,9 +127,9 @@ export default function ResultsDashboard({ result, onReset }) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <SkillGapAnalyzer matched={result.matched_skills} missing={result.missing_skills} />
     </motion.div>
   );
-
+  }
