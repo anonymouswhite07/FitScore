@@ -66,6 +66,23 @@ function App() {
         ) : (
           <ResultsDashboard result={result} onReset={handleReset} />
         )}
+
+        <footer className="mt-20 py-8 px-10 liquid-glass flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl w-full">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+              <span className="text-[10px] font-black text-primary">FS</span>
+            </div>
+            <div>
+              <p className="text-[10px] font-black text-white uppercase tracking-[0.2em]">FitScore v2.0</p>
+              <p className="text-[8px] font-bold text-textMuted uppercase tracking-widest">LiquidGlass Engine Active</p>
+            </div>
+          </div>
+          <div className="flex gap-8">
+            <a href="#" className="text-[10px] font-black text-textMuted uppercase tracking-widest hover:text-primary transition-colors">Documentation</a>
+            <a href="#" className="text-[10px] font-black text-textMuted uppercase tracking-widest hover:text-primary transition-colors">API Keys</a>
+            <a href="#" className="text-[10px] font-black text-textMuted uppercase tracking-widest hover:text-primary transition-colors">Support</a>
+          </div>
+        </footer>
       </div>
     </div>
   );
