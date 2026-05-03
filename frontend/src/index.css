@@ -11,9 +11,26 @@
 /* Glassmorphism utilities */
 @layer utilities {
   .glass {
-    @apply bg-surface/60 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-surface/40 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
   .glass-card {
-    @apply bg-surface/40 backdrop-blur-lg border border-white/5 rounded-2xl shadow-lg;
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
   }
+  .liquid-glass {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl border border-white/20 rounded-[2.5rem] shadow-glass relative overflow-hidden;
+  }
+  .liquid-glass::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-glass-shine;
+  }
+  .glow-primary {
+    @apply shadow-[0_0_30px_rgba(0,210,255,0.3)];
+  }
+  .glow-secondary {
+    @apply shadow-[0_0_30px_rgba(157,80,187,0.3)];
+  }
+}
+
+.bg-blob {
+  @apply absolute rounded-full mix-blend-screen filter blur-[80px] opacity-50 animate-blob;
 }
