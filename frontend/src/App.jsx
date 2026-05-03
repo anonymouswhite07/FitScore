@@ -41,15 +41,22 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary/20 blur-[120px] pointer-events-none" />
+    <div className="min-h-screen relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-background">
+      {/* LiquidGlass Animated Background Blobs */}
+      <div className="bg-blob w-[500px] h-[500px] bg-primary/20 top-[-100px] left-[-100px] animate-blob"></div>
+      <div className="bg-blob w-[400px] h-[400px] bg-secondary/20 bottom-[-100px] right-[-100px] animate-blob animation-delay-2000"></div>
+      <div className="bg-blob w-[300px] h-[300px] bg-accent/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-blob animation-delay-4000"></div>
       
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-[80vh]">
-        
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] w-full max-w-7xl mx-auto">
+        <header className="text-center mb-12">
+          <h1 className="text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary mb-2 animate-pulse">
+            FitScore
+          </h1>
+          <div className="h-1 w-24 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+        </header>
+
         {error && (
-          <div className="mb-8 p-4 glass-card border-red-500/50 text-red-200 max-w-4xl w-full text-center">
+          <div className="mb-8 p-6 liquid-glass border-red-500/50 text-red-200 max-w-4xl w-full text-center">
             {error}
           </div>
         )}
