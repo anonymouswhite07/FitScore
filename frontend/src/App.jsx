@@ -1,3 +1,4 @@
+// FitScore v2.0 - LiquidGlass Edition
 import React, { useState } from 'react';
 import axios from 'axios';
 import UploadSection from './components/UploadSection';
